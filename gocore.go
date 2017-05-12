@@ -1,4 +1,4 @@
-package main
+package gocore
 
 import (
   "encoding/json"
@@ -10,7 +10,6 @@ import (
 
   "github.com/urfave/negroni"
   "github.com/unrolled/render"
-  "github.com/chromatixau/gocore"
   "github.com/chromatixau/gomiddleware"
 )
 
