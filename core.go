@@ -27,7 +27,7 @@ type Core struct {
   Port string
 }
 
-func New() *Core {
+func NewCore() *Core {
   logfilename := os.Getenv( "GO_LOGFILE" )
   if logfilename == "" {
     logfilename = "log/goapp.log"
