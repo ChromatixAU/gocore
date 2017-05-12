@@ -107,10 +107,10 @@ func ( c *Core ) BindMiddleware() {
   c.Negroni.Use( c.Static )
 }
 
-func ( c *Core ) StartServer() {
+func ( c *Core ) StartServer() error {
   c.Logger.Println( "Starting Goapp Service" )
   c.Logger.Println( "----------------------" )
-  http.ListenAndServe( c.Addr + c.Port, c.Negroni )
+  return http.ListenAndServe( c.Addr + c.Port, c.Negroni )
 }
 
 func ( c *Core ) getBaseURI( req *http.Request ) ( string, string ) {
