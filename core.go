@@ -10,13 +10,12 @@ import (
 
   "github.com/urfave/negroni"
   "github.com/unrolled/render"
-  "github.com/chromatixau/gomiddleware"
 )
 
 type Core struct {
   Negroni *negroni.Negroni
-  Logger *gomiddleware.Logger
-  Static *gomiddleware.Static
+  Logger *negroni.Logger
+  Static *negroni.Static
   Recovery *negroni.Recovery
   BaseRoute string
   Theme string
@@ -47,13 +46,13 @@ func NewCore() *Core {
   coreRender := render.New( render.Options{ IsDevelopment: true, Directory: coredir + "/templates" } )
   mux := http.NewServeMux()
   n := negroni.New()
-  l := gomiddleware.NewLoggerWithStream( errorLog )
+  l := negroni.NewLoggerWithStream( errorLog )
   r := negroni.NewRecovery()
   r.Logger = l
   r.PrintStack = false
   baseRoute := os.Getenv( "GOBASEROUTE" )
 
-  s := gomiddleware.NewStatic( http.Dir( "public" ) )
+  s := negroni.NewStatic( http.Dir( "public" ) )
   if baseRoute != "" {
     s.Prefix = "/" + baseRoute
   }

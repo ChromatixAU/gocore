@@ -1,4 +1,4 @@
-PACKAGES=github.com/urfave/negroni github.com/unrolled/render github.com/chromatixau/gomiddlware
+PACKAGES=github.com/chromatixau/negroni github.com/unrolled/render
 
 all: build
 
