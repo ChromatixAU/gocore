@@ -8,8 +8,8 @@ import (
   "os"
   "strings"
 
-  "github.com/urfave/negroni"
-  "github.com/unrolled/render"
+  "github.com/chromatixau/negroni"
+  "github.com/chromatixau/render"
 )
 
 type Core struct {

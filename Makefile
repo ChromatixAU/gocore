@@ -1,4 +1,4 @@
-PACKAGES=github.com/chromatixau/negroni github.com/unrolled/render
+PACKAGES=github.com/chromatixau/negroni github.com/chromatixau/render
 
 all: build
 
