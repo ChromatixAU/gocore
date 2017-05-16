@@ -27,15 +27,6 @@ type Core struct {
 }
 
 func NewCore() *Core {
-  logfilename := os.Getenv( "GO_LOGFILE" )
-  if logfilename == "" {
-    logfilename = "log/goapp.log"
-  }
-  errorLog, err := os.OpenFile( logfilename, os.O_RDWR | os.O_CREATE | os.O_APPEND, 0666 )
-  if err != nil {
-    log.Fatal( "error writing to log: " + logfilename )
-  }
-  defer errorLog.Close()
   theme := os.Getenv( "GO_THEME" )
   if theme == "" {
     log.Fatal("error theme not specified")
@@ -46,7 +37,7 @@ func NewCore() *Core {
   coreRender := render.New( render.Options{ IsDevelopment: true, Directory: coredir + "/templates" } )
   mux := http.NewServeMux()
   n := negroni.New()
-  l := negroni.NewLoggerWithStream( errorLog )
+  l := negroni.NewLogger()
   //r := negroni.NewRecovery()
   //r.Logger = l
   //r.PrintStack = false
@@ -79,6 +70,10 @@ func NewCore() *Core {
   l.Println( "Negroni configured" )
 
   return &core
+}
+
+func ( c *Core ) Println( v ...interface{} ) {
+  c.Logger.Println( v )
 }
 
 func ( c *Core ) HandleRender() {
