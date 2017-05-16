@@ -76,6 +76,8 @@ func NewCore() *Core {
     Port: port,
   }
 
+  l.Println( "Negroni configured" )
+
   return &core
 }
 
