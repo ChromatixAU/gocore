@@ -16,7 +16,7 @@ type Core struct {
   Negroni *negroni.Negroni
   Logger *negroni.Logger
   Static *negroni.Static
-  Recovery *negroni.Recovery
+  //Recovery *negroni.Recovery
   BaseRoute string
   Theme string
   ThemeRenderer *render.Render
@@ -47,9 +47,9 @@ func NewCore() *Core {
   mux := http.NewServeMux()
   n := negroni.New()
   l := negroni.NewLoggerWithStream( errorLog )
-  r := negroni.NewRecovery()
-  r.Logger = l
-  r.PrintStack = false
+  //r := negroni.NewRecovery()
+  //r.Logger = l
+  //r.PrintStack = false
   baseRoute := os.Getenv( "GOBASEROUTE" )
 
   s := negroni.NewStatic( http.Dir( "public" ) )
@@ -66,7 +66,7 @@ func NewCore() *Core {
     Negroni: n,
     Logger: l,
     Static: s,
-    Recovery: r,
+    //Recovery: r,
     BaseRoute: baseRoute,
     Theme: theme,
     ThemeRenderer: themeRender,
@@ -105,7 +105,7 @@ func ( c *Core ) HandleRender() {
 }
 
 func ( c *Core ) BindMiddleware() {
-  c.Negroni.Use( c.Recovery )
+  //c.Negroni.Use( c.Recovery )
   c.Negroni.Use( c.Logger )
   c.Negroni.UseHandler( c.Mux )
   c.Negroni.Use( c.Static )
