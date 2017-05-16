@@ -80,6 +80,10 @@ func ( c *Core ) HandleRender() {
   log.Println( "help" )
   c.Logger.Println( "start handle Render" )
   c.Mux.HandleFunc( "/", func( w http.ResponseWriter, req *http.Request ) {
+    if ( strings.HasSuffix( req.URL.Path, "/" ) ) {
+      http.Redirect(w, req, strings.TrimSuffix( r.URL.Path, "/" ), http.StatusFound )
+      return
+    }
     c.Logger.Println( "start" )
     baseURI, prefix := c.getBaseURI( req )
 
