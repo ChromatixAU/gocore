@@ -102,8 +102,8 @@ func ( c *Core ) HandleRender() {
 func ( c *Core ) BindMiddleware() {
   //c.Negroni.Use( c.Recovery )
   c.Negroni.Use( c.Logger )
-  c.Negroni.UseHandler( c.Mux )
   c.Negroni.Use( c.Static )
+  c.Negroni.UseHandler( c.Mux )
 }
 
 func ( c *Core ) StartServer() error {
