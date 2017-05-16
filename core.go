@@ -99,6 +99,7 @@ func ( c *Core ) HandleRender() {
 
     c.ThemeRenderer.HTML( w, http.StatusOK, templateName, data )
   } )
+  c.Logger.Println( "Core Routes Configured" )
 }
 
 func ( c *Core ) BindMiddleware() {
