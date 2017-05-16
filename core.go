@@ -82,6 +82,7 @@ func NewCore() *Core {
 }
 
 func ( c *Core ) HandleRender() {
+  log.Println( "help" )
   c.Logger.Println( "start handle Render" )
   c.Mux.HandleFunc( "/", func( w http.ResponseWriter, req *http.Request ) {
     c.Logger.Println( "start" )
