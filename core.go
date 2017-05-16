@@ -137,6 +137,7 @@ func ( c *Core ) getRequestVars( req *http.Request ) ( string, string, string, s
   }
 
   forwardedHost := req.Header.Get( "X-Forwarded-Host" )
+  c.Logger.Println( forwardedHost )
   host := req.Host
   if forwardedHost != "" {
     host = forwardedHost
